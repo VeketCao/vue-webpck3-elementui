@@ -2,22 +2,21 @@
  * Created by Veket on 2017/9/19.
  */
 import '../../css/base';
-import HelloWorld from '../components/HelloWorld/main.vue';
+import App from '../pages/App/main.vue';
+import router from '../pages/Route/main.js';
+import El from '../lib/el/index.js';
+
+El.initElement();//初始化ElementUI
 
 new Vue({
-    el: '#app',
-    data: {
-        message: 'Hello Vue!'
-    },
-    template:'<hello-world></hello-world>',
-    components:{
-        'hello-world':HelloWorld,
-    }
-});
-
+    router:router,
+    render: h => h(App),
+}).$mount('#app');
 
 if (__PROD__) {
     Vue.config.devtools = false;
+    console.log('[正式环境]');
 } else {
     Vue.config.devtools = true;
+    console.log('[开发环境]');
 }

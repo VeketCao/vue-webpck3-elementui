@@ -55,6 +55,7 @@ module.exports = (() => {
                 vue$:`${nodeModulesPath}/vue/dist/vue.js`,
                 img:`${srcDir}/img`,
                 fonts:`${srcDir}/fonts`,
+                apputil:`${srcDir}/js/util/main.js`,
                 "~":`${srcDir}`
             }
         },
@@ -77,7 +78,7 @@ module.exports = (() => {
                 minChunks: 2,
             }),
             new ExtractTextPlugin({
-                filename: 'css/[contenthash:8].[name].min.css',
+                filename: 'css/[hash:8].[name].min.css',
                 allChunks: true
             }),
             new UglifyJsPlugin({
@@ -88,7 +89,7 @@ module.exports = (() => {
                 },
                 mangle: { except: ['$super','Vue', '$', 'exports', 'require']},
             }),
-            new webpack.ProvidePlugin({'_': "underscore",'Vue':'vue'}),
+            new webpack.ProvidePlugin({'_': "underscore",'Vue':'vue','AppUtil':'apputil',}),
             new CleanWebpackPlugin(['dist'])
         ].concat(htmlPlugins()),
         module:{
@@ -137,20 +138,12 @@ module.exports = (() => {
                     }))
                 },
                 {
-                    test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                    test: /\.(png|jpg|jpeg|gif|svg)(\?.*)?$/,
                     use:[{
-                        loader:'image-webpack-loader',
-                        options:{
-                            progressive:true,
-                            optimizationLevel:4,
-                            interlaced:false,
-                            pngquant:{quality: "65-90", speed: 4}
-                        }
-                    },{
                         loader:'url-loader',
                         options:{
                             limit:10000,
-                            name:'/img/[hash:8].[name].[ext]'
+                            name:'img/[hash:8].[name].[ext]'
                         }
                     }]
                 },
@@ -160,7 +153,7 @@ module.exports = (() => {
                         loader:'url-loader',
                         options:{
                             limit:10000,
-                            name:'/fonts/[hash:8].[name].[ext]'
+                            name:'fonts/[hash:8].[name].[ext]'
                         }
                     }]
                 },

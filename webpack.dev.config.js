@@ -54,6 +54,7 @@ module.exports = (() => {
                 vue$:`${nodeModulesPath}/vue/dist/vue.js`,
                 img:`${srcDir}/img`,
                 fonts:`${srcDir}/fonts`,
+                apputil:`${srcDir}/js/util/main.js`,
                 "~":`${srcDir}`
             }
         },
@@ -95,7 +96,7 @@ module.exports = (() => {
                 filename: 'css/[name].css',
                 allChunks: true
             }),
-            new webpack.ProvidePlugin({'_': "underscore",'Vue':'vue'}),
+            new webpack.ProvidePlugin({'_': "underscore",'Vue':'vue','AppUtil':'apputil',}),
             new OpenBrowserPlugin({url:'http://localhost:4000/main.html'})
         ].concat(htmlPlugins()),
         module:{
@@ -144,20 +145,12 @@ module.exports = (() => {
                     }))
                 },
                 {
-                    test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                    test: /\.(png|jpg|jpeg|gif|svg)(\?.*)?$/,
                     use:[{
-                        loader:'image-webpack-loader',
-                        options:{
-                            progressive:true,
-                            optimizationLevel:4,
-                            interlaced:false,
-                            pngquant:{quality: "65-90", speed: 4}
-                        }
-                    },{
                         loader:'url-loader',
                         options:{
                             limit:10000,
-                            name:'/img/[name].[ext]'
+                            name:'img/[name].[ext]'
                         }
                     }]
                 },
@@ -167,7 +160,7 @@ module.exports = (() => {
                         loader:'url-loader',
                         options:{
                             limit:10000,
-                            name:'/fonts/[name].[ext]'
+                            name:'fonts/[name].[ext]'
                         }
                     }]
                 },
