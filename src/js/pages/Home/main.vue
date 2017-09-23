@@ -33,6 +33,19 @@
                 </div>
             </div>
         </div>
+        <div class="item_box w1200">
+            <div class="con_box">
+                <div class="left">
+                    <div class="s1">注重用户体验</div>
+                    <div class="s2">
+                        COINE18用心雕琢用户的使用习惯，本着体
+                        <br>
+                        验至上的原则进行了全流程设计
+                    </div>
+                </div>
+                <img :src="require('../../../img/plat3.png')" class="right">
+            </div>
+        </div>
     </div>
 </template>
 <style lang="scss" scoped>
@@ -69,7 +82,6 @@
     }
 </style>
 <script>
-
     export default{
         data(){
             return{

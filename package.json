@@ -24,6 +24,7 @@
     "element-ui": "^1.4.4",
     "underscore": "^1.8.3",
     "vue": "^2.4.4",
+    "vue-i18n": "^5.0.3",
     "vue-router": "^2.7.0"
   },
   "devDependencies": {

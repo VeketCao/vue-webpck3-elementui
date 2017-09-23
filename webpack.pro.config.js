@@ -77,10 +77,6 @@ module.exports = (() => {
                 names: ['common', 'vendor'],
                 minChunks: 2,
             }),
-            new ExtractTextPlugin({
-                filename: 'css/[hash:8].[name].min.css',
-                allChunks: true
-            }),
             new UglifyJsPlugin({
                 compress:{
                     warnings: true,
@@ -88,6 +84,10 @@ module.exports = (() => {
                     drop_console: true
                 },
                 mangle: { except: ['$super','Vue', '$', 'exports', 'require']},
+            }),
+            new ExtractTextPlugin({
+                filename: 'css/[hash:8].[name].min.css',
+                allChunks: true
             }),
             new webpack.ProvidePlugin({'_': "underscore",'Vue':'vue','AppUtil':'apputil',}),
             new CleanWebpackPlugin(['dist'])

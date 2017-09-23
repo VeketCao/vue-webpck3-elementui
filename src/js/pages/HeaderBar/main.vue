@@ -11,6 +11,8 @@
             <li><router-link to="/finance" ><span>财务</span></router-link></li>
             <li><router-link to="/security" ><span>安全</span></router-link></li>
         </ul>
+        <lang-tool></lang-tool>
+        <lr-tool></lr-tool>
     </div>
 </template>
 <style lang="scss" scoped>
@@ -66,11 +68,18 @@
     }
 </style>
 <script>
+    import LRTool from './LRTool/main.vue';
+    import LangTool from './LangTool/main.vue';
+
     export default{
         data(){
             return{
                 msg:'hello m2',
             }
+        },
+        components:{
+            'lr-tool':LRTool,
+            'lang-tool':LangTool
         }
     }
 </script>
