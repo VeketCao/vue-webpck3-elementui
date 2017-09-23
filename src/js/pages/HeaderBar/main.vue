@@ -6,10 +6,10 @@
             </h1>
         </div>
         <ul class="nav" >
-            <li><router-link to="/home" ><span>首页</span></router-link></li>
-            <li><router-link to="/trade" ><span>交易</span></router-link></li>
-            <li><router-link to="/finance" ><span>财务</span></router-link></li>
-            <li><router-link to="/security" ><span>安全</span></router-link></li>
+            <li><router-link to="/home" ><span>{{$t('home.menu1')}}</span></router-link></li>
+            <li><router-link to="/trade" ><span>{{$t('home.menu2')}}</span></router-link></li>
+            <li><router-link to="/finance" ><span>{{$t('home.menu3')}}</span></router-link></li>
+            <li><router-link to="/security" ><span>{{$t('home.menu4')}}</span></router-link></li>
         </ul>
         <lang-tool></lang-tool>
         <lr-tool></lr-tool>

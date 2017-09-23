@@ -4,7 +4,11 @@
 export default {
     hello: 'hello world!',
     home:{
-        login:'login',
-        register:'register'
+        login:'Sign In',
+        register:'Sign Up',
+        menu1:'Home',
+        menu2:'Trade',
+        menu3:'Finance',
+        menu4:'Security',
     }
 }
