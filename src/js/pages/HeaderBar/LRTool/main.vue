@@ -16,6 +16,9 @@
             background: #2174ff;
             color: #fff;
         }
+        a{
+            color: #666;
+        }
         a:hover{
             color: #2174ff;
         }

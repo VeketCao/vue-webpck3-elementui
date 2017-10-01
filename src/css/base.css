@@ -56,3 +56,28 @@ html,body{ width:100%; height:100%;background:#F2F4F8;}
 .right{
     float: right;
 }
+
+.display_none{
+    display: none;
+}
+.valid_error{
+    border:1px solid red !important;
+}
+.v_info{
+    display: block;
+    color: red;
+    padding: 10px 0px 0px 5px;
+    float: left;
+}
+.disable_yzm{
+    pointer-events:none;
+    color:#afafaf;
+    cursor:default
+}
+.disable_btn{
+    background: #eee !important;
+    text-align: center !important;
+    color: #fff !important;
+    cursor: default !important;
+    border: solid 1px #eee !important;
+}
