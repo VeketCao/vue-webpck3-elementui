@@ -63,7 +63,7 @@
                     }
                 },
                 send_yzm:{
-                    v:'111111',
+                    v:'3ddd228adb89faf0cb4dde2000099e0573a5b63f042e8ba18f7bb28dcd2edee6',
                     msg:'发送验证码到我的邮箱',
                     is_send:false,
                     wait:60
@@ -138,8 +138,24 @@
                 this.tpwValid();
                 this.yzmValid();
                 if(this.isAllPass()){
-                    console.log(this.user);
-                    this.isR  = true;
+                    this.isR  = true;//注册按钮disable
+                    let _that = this;
+                    const item = {
+                        'EMAIL':this.user.EMAIL,
+                        'USER_PASSWORD':AppUtil.encrypt(this.user.USER_PASSWORD),
+                        'USER_TRADE_PASSWORD':AppUtil.encrypt(this.user.USER_TRADE_PASSWORD)
+                    };
+                    API.updateUser(item).then(function (rtn) {
+                        _that.isR  = false;
+                        if(!_.isEmpty(rtn.data)){
+                            _that.$message({ message: '注册成功', type: 'success', showClose:true });
+                        }
+                        if(rtn.error&&rtn.error.code==='ER_DUP_ENTRY'){
+                            _that.$message({ message: '该邮箱已注册', type: 'error', showClose:true });
+                        }
+                    }).catch(function (error) {
+                        console.log('error',error);
+                    })
                 }
             },
             timer(){
