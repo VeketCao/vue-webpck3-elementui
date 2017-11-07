@@ -101,19 +101,23 @@ module.exports = (() => {
                         loaders:{
                             css:['css-hot-loader'].concat(ExtractTextPlugin.extract({
                                 use:'css-loader',
-                                fallback:'vue-style-loader'
+                                fallback:'vue-style-loader',
+                                publicPath: '../'
                             })),
                             scss:['css-hot-loader'].concat(ExtractTextPlugin.extract({
                                 use:['css-loader','postcss-loader','sass-loader'],
-                                fallback:'vue-style-loader'
+                                fallback:'vue-style-loader',
+                                publicPath: '../'
                             })),
                             sass:['css-hot-loader'].concat(ExtractTextPlugin.extract({
                                 use:['css-loader','postcss-loader','sass-loader'],
-                                fallback:'vue-style-loader'
+                                fallback:'vue-style-loader',
+                                publicPath: '../'
                             })),
                             postcss:['css-hot-loader'].concat(ExtractTextPlugin.extract({
                                 use:['css-loader','postcss-loader'],
-                                fallback:'vue-style-loader'
+                                fallback:'vue-style-loader',
+                                publicPath: '../'
                             })),
                         }
                     }
@@ -127,14 +131,16 @@ module.exports = (() => {
                     test: /\.css$/,
                     use:['css-hot-loader'].concat(ExtractTextPlugin.extract({
                         use:['css-loader','postcss-loader'],
-                        fallback:'style-loader'
+                        fallback:'style-loader',
+                        publicPath: '../'
                     }))
                 },
                 {
                     test: /\.(scss|sass)$/,
                     use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
                         use: ['css-loader', 'postcss-loader', 'sass-loader'],
-                        fallback: 'style-loader'
+                        fallback: 'style-loader',
+                        publicPath: '../'
                     }))
                 },
                 {
