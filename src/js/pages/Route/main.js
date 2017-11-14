@@ -50,4 +50,6 @@ const router = new VueRouter({
     routes: routesMap
 });
 
+
+
 export default router;

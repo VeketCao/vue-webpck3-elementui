@@ -1,11 +1,6 @@
 <template>
     <div class="home-page">
-        <div>
-            <el-carousel :interval="5000" arrow="always" height="300px">
-                <el-carousel-item :key="index" v-for="(item,index) in ads">
-                    <img :src="item" style="width:100%;height:100%;"/>
-                </el-carousel-item>
-            </el-carousel>
+        <div class="banner">
         </div>
         <div class="item_box w1200">
             <div class="con_box">
@@ -53,6 +48,15 @@
         margin-top: 50px;
         background: #fff;
         min-height: 660px;
+        .banner{
+            width: 100%;
+            height: 312px;
+            background: url(../../../img/ad1.jpg) center -58px no-repeat;
+            //cursor: pointer;
+            overflow: hidden;
+            position: relative;
+            background-size: cover;
+        }
         .item_box{
             height: 300px;
             box-sizing: border-box;
@@ -85,11 +89,7 @@
     export default{
         data(){
             return{
-                msg:'hello m2',
-                ads:[
-                    require('../../../img/ad1.jpg'),
-                    require('../../../img/ad2.jpg'),
-                ]
+                msg:'hello m2'
             }
         }
     }

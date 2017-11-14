@@ -1,7 +1,9 @@
 <template>
     <div class="beauty-scroll-bar" id="app-main">
         <header-bar></header-bar>
-        <router-view></router-view>
+        <div class="app_container">
+            <router-view></router-view>
+        </div>
         <footer-bar></footer-bar>
     </div>
 </template>
@@ -13,14 +15,19 @@
         font-size: 14px;
         -webkit-font-smoothing: antialiased;
         min-width:1200px;
+        height:100%;
+        width: 100%;
     }
     #app-main {
         margin: 0 auto;
         padding:0;
         height:100%;
-        overflow:auto;
+        width: 100%;
     }
-
+    .app_container{
+        width: 100%;
+        min-height: 570px;
+    }
 </style>
 <script>
     import HeaderBar from '../HeaderBar/main.vue';

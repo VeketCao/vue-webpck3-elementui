@@ -190,10 +190,13 @@
 <style lang="scss" scoped>
     .app_register{
         width: 852px;
-        margin: 100px auto;
+        height: 440px;
+        margin: 90px 220px;
         background: #fff;
         box-shadow: 0 0 10px rgba(0,0,0,.07);
+        overflow: hidden;
         border-radius: 3px;
+        position: absolute;
         .header{
             font-size: 24px;
             text-align: center;
