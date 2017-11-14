@@ -4,6 +4,8 @@
 import VueRouter from 'vue-router';
 
 import Home from '../Home/main.vue';
+import Login from '../Login/main.vue';
+import Register from '../Register/main.vue';
 
 Vue.use(VueRouter);
 
@@ -34,12 +36,12 @@ const routesMap = [
     {
         path: '/login',
         name:'login',
-        component:(resolve)=>{require(['../Login/main.vue'],resolve)}
+        component:Login
     },
     {
         path: '/register',
         name:'register',
-        component:(resolve)=>{require(['../Register/main.vue'],resolve)}
+        component:Register
     }
 
 ];
@@ -48,6 +50,13 @@ const router = new VueRouter({
     mode: 'hash',
     base: __dirname,
     routes: routesMap
+});
+
+router.beforeEach((to, from, next) => {
+    console.log(to);
+    console.log(from);
+    next();
+
 });
 
 
