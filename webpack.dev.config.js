@@ -69,7 +69,7 @@ module.exports = (() => {
             hot:true,
             inline:true,
             publicPath:'',
-            port:3000,
+            port:5000,
             host:'localhost',
             stats:{cached:false,colors:true}
         },
@@ -97,10 +97,19 @@ module.exports = (() => {
                 allChunks: true
             }),
             new webpack.ProvidePlugin({'_': "underscore",'Vue':'vue','AppUtil':'apputil',}),
-            new OpenBrowserPlugin({url:'http://localhost:3000/main.html'})
+            new OpenBrowserPlugin({url:'http://localhost:5000/main.html'})
         ].concat(htmlPlugins()),
         module:{
             rules:[
+                {
+                    test: /\.(js|vue)$/,
+                    loader: 'eslint-loader',
+                    enforce: 'pre',
+                    include: [srcDir],
+                    options: {
+                        formatter: require('eslint-friendly-formatter')
+                    }
+                },
                 {
                     test: /\.vue$/,
                     loader: 'vue-loader',

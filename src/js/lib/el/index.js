@@ -8,7 +8,7 @@ global.Vue = window.Vue = Vue;
 global.Bus = window.Bus = new Vue();
 
 export default {
-    initElement(){
-        Vue.use(ElementUI);
-    }
+  initElement(){
+    Vue.use(ElementUI);
+  }
 }

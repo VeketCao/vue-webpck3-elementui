@@ -53,12 +53,20 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    console.log(to);
-    console.log(from);
-    next();
+    let needLogin = ()=>{
+        let rtn = false;
+        if(to.path.indexOf('trade')!=-1 || to.path.indexOf('finance')!=-1 ||to.path.indexOf('security')!=-1) rtn = true;
+        return rtn;
+    };
+
+    if(needLogin() && _.isEmpty(sessionStorage.getItem('user'))){
+        //打开需要登录才能打开的模块，如果未登录则跳转到登录界面
+        next({path:'/login'});
+    }else{
+        next();
+    }
+
 
 });
-
-
 
 export default router;

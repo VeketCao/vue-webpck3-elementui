@@ -3,7 +3,7 @@
         <span>{{msg}}</span>
     </div>
 </template>
-<style lang="sass" scoped>
+<style lang="scss" scoped>
     .test_bg{
         background: rosybrown;
     }

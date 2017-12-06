@@ -2,7 +2,7 @@
     <div class="header-bar-nav">
         <div class="logo">
             <h1>
-                <a href="#/home">Coin18</a>
+                <a href="#/home">VCoin</a>
             </h1>
         </div>
         <ul class="nav" >
