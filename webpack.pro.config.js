@@ -12,6 +12,7 @@ const srcDir = path.resolve(process.cwd(),'src');
 const libDir = path.resolve(srcDir, 'js/lib');
 const glob = require('glob');
 const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
+const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
@@ -78,16 +79,19 @@ module.exports = (() => {
                 minChunks: 2,
             }),
             new UglifyJsPlugin({
-                compress:{
-                    warnings: true,
-                    drop_debugger: true,
-                    drop_console: true
+                uglifyOptions: {
+                    compress:{warnings: false,},
+                    mangle: { except: ['$super','Vue', '$', 'exports', 'require']},
                 },
-                mangle: { except: ['$super','Vue', '$', 'exports', 'require']},
+                sourceMap: true,
+                parallel: true
             }),
             new ExtractTextPlugin({
-                filename: 'css/[hash:8].[name].min.css',
-                allChunks: true
+                filename: 'css/[contenthash].[name].min.css',
+                allChunks: false
+            }),
+            new OptimizeCSSPlugin({
+                cssProcessorOptions: { safe: true, map: { inline: false } }
             }),
             new webpack.ProvidePlugin({'_': "underscore",'Vue':'vue','AppUtil':'apputil',}),
             new CleanWebpackPlugin(['dist'])
@@ -99,26 +103,26 @@ module.exports = (() => {
                     loader: 'vue-loader',
                     options:{
                         loaders:{
-                            css:['css-hot-loader'].concat(ExtractTextPlugin.extract({
+                            css:ExtractTextPlugin.extract({
                                 use:'css-loader',
                                 fallback:'vue-style-loader',
                                 publicPath: '../'
-                            })),
-                            scss:['css-hot-loader'].concat(ExtractTextPlugin.extract({
+                            }),
+                            scss:ExtractTextPlugin.extract({
                                 use:['css-loader','postcss-loader','sass-loader'],
                                 fallback:'vue-style-loader',
                                 publicPath: '../'
-                            })),
-                            sass:['css-hot-loader'].concat(ExtractTextPlugin.extract({
+                            }),
+                            sass:ExtractTextPlugin.extract({
                                 use:['css-loader','postcss-loader','sass-loader'],
                                 fallback:'vue-style-loader',
                                 publicPath: '../'
-                            })),
-                            postcss:['css-hot-loader'].concat(ExtractTextPlugin.extract({
+                            }),
+                            postcss:ExtractTextPlugin.extract({
                                 use:['css-loader','postcss-loader'],
                                 fallback:'vue-style-loader',
                                 publicPath: '../'
-                            })),
+                            }),
                         }
                     }
                 },
@@ -129,19 +133,19 @@ module.exports = (() => {
                 },
                 {
                     test: /\.css$/,
-                    use:['css-hot-loader'].concat(ExtractTextPlugin.extract({
+                    use:ExtractTextPlugin.extract({
                         use:['css-loader','postcss-loader'],
                         fallback:'style-loader',
                         publicPath: '../'
-                    }))
+                    })
                 },
                 {
                     test: /\.(scss|sass)$/,
-                    use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
+                    use: ExtractTextPlugin.extract({
                         use: ['css-loader', 'postcss-loader', 'sass-loader'],
                         fallback: 'style-loader',
                         publicPath: '../'
-                    }))
+                    })
                 },
                 {
                     test: /\.(png|jpg|jpeg|gif|svg)(\?.*)?$/,
