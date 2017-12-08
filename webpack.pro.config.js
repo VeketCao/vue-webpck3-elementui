@@ -93,6 +93,9 @@ module.exports = (() => {
             new OptimizeCSSPlugin({
                 cssProcessorOptions: { safe: true, map: { inline: false } }
             }),
+            new OptimizeCSSPlugin({
+                cssProcessorOptions: { safe: true, map: { inline: false } }
+            }),
             new webpack.ProvidePlugin({'_': "underscore",'Vue':'vue','AppUtil':'apputil',}),
             new CleanWebpackPlugin(['dist'])
         ].concat(htmlPlugins()),
